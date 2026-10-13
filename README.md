@@ -110,16 +110,6 @@ best-effort publishers); commands and outputs use reliable depth 10. Timing uses
 
 Transitions:
 
-```
-          obstacle < caution                      distance <= effective_stop
- NORMAL ----------------------> CAUTION ---------------------------------> EMERGENCY_STOP
-   ^  <---------------------------  |                                            |
-   |    obstacle > caution+hyst.    |   (also straight NORMAL -> E-STOP)         |
-   |                                                                             |
-   +---- reset service accepted (path clear >= recovery_clear_time) -------------+
-   +---- (sensor fault only) scan healthy >= sensor_recovery_time, auto ---------+
-                 both are followed by a speed ramp (recovery_ramp_time)
-```
 
 * **Obstacle emergency stop is latched.** Zero output is held even if the obstacle disappears
   and even if Nav2 keeps commanding. Only `~/reset` releases it.
