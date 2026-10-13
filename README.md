@@ -56,6 +56,10 @@ ros2 service call /safety_supervisor/reset std_srvs/srv/Trigger   # recover from
 
 [Safety Navigation Architecture Diagram](architecture.png)
 
+<p align="center">
+  <img src="architecture.png" alt="Safety Navigation Architecture" width="700"/>
+</p>
+
 ```
                         +------------------------ safety_supervisor ------------------------+
  Nav2 (controller,  --> | /cmd_vel_nav (Twist)                                               |
