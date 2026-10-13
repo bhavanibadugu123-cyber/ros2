@@ -54,7 +54,7 @@ ros2 service call /safety_supervisor/reset std_srvs/srv/Trigger   # recover from
 
 ## 4. Architecture
 
-[Safety Navigation Architecture Diagram](architecture.png)
+
 
 <p align="center">
   <img src="architecture.png" alt="Safety Navigation Architecture" width="700"/>
@@ -232,9 +232,7 @@ colcon test-result --verbose
 
 ## 11. Demo video checklist (2–4 minutes, screen recording)
 
-1. Launch + show `ros2 topic echo /safety_state` and `/cmd_vel` side by side with RViz/Gazebo (scenario 1).
-2. Spawn obstacle → CAUTION speed shrinking (3), then E-STOP (4); show `/cmd_vel_nav` non-zero vs `/cmd_vel` zero (10).
-3. Reset service rejected, then accepted after clearing (recovery).
-4. Obstacle behind (5), `scan_off` / `scan_on` (6, 7), moving box (8), `ros2 param set` (9).
-5. Run `colcon test` at the end and show the passing results.
+1. Launch + show `ros2 topic echo /safety_state` and `/safety_debug` side by side with RViz/Gazebo (scenario 1).
+2. Spawn obstacle → CAUTION speed shrinking (3), then E-STOP (4); 
+
 
