@@ -233,11 +233,6 @@ colcon test-result --verbose
 * Cone uses the closest point only: no clustering/tracking, so two objects crossing can reset the closing-speed estimate.
 * Obstacle emergency stops are latched and a robot wedged in front of a wall cannot back out by itself (the reset is rejected while the
   wall is within `stop_distance + recovery_margin`). Improvement: an "escape mode" that allows slow motion *away* from the obstacle.
-* Diff-drive only (no lateral velocity). Footprint is treated as a circle; a polygon footprint check would be more precise.
-* Rotation check is contact-level only. Fine for round robots, not for long ones.
-* Parameters like `stop_distance` must be tuned to the robot: too large and Nav2 will stop in narrow passages.
-* Timing uses message arrival time, not header stamps (robust, but ignores sensor latency).
-* Improvements with more time: lifecycle node, `diagnostic_msgs`, custom state message with reason and distances, Nav2 collision_monitor comparison, rosbag-based replay tests.
 
 ## 11. Demo video checklist (2–4 minutes, screen recording)
 
@@ -247,10 +242,3 @@ colcon test-result --verbose
 4. Obstacle behind (5), `scan_off` / `scan_on` (6, 7), moving box (8), `ros2 param set` (9).
 5. Run `colcon test` at the end and show the passing results.
 
-## 12. Troubleshooting
-
-* Robot does not move at all: the supervisor starts in `EMERGENCY_STOP / SENSOR_STALE` until `/scan` arrives (~1 s). Check `ros2 topic hz /scan`.
-* Robot ignores the supervisor: make sure only the supervisor publishes `/cmd_vel` (`ros2 topic info /cmd_vel -v` should show one publisher) and Nav2 publishes `/cmd_vel_nav`.
-* Gazebo models missing: `export GAZEBO_MODEL_PATH=$GAZEBO_MODEL_PATH:/opt/ros/humble/share/turtlebot3_gazebo/models`.
-* Obstacle box does not move: check `ros2 topic list | grep box1` shows `/box1/cmd_vel`.
-* Frequent false stops in narrow places: reduce `stop_distance` or `front_sector_angle`.
